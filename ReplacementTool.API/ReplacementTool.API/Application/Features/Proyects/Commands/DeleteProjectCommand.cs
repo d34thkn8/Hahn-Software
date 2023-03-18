@@ -8,6 +8,10 @@ namespace MyApi.Application.Features.Projects.Commands
     public class DeleteProjectCommand : IRequest<Unit>
     {
         public int Id { get; set; }
+        public DeleteProjectCommand(int id)
+        {
+            Id = id;
+        }
 
         public class DeleteProjectCommandHandler : IRequestHandler<DeleteProjectCommand, Unit>
         {

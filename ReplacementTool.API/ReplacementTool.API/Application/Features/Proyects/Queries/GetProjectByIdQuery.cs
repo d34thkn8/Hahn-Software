@@ -9,6 +9,10 @@ namespace ReplacementTool.API.Application.Features.Projects.Queries
     public class GetProjectByIdQuery : IRequest<Project>
     {
         public int Id { get; set; }
+        public GetProjectByIdQuery(int id)
+        {
+            Id = id;
+        }
 
         public class GetProjectByIdQueryHandler : IRequestHandler<GetProjectByIdQuery, Project>
         {
