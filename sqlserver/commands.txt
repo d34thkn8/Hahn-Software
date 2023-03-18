@@ -1,0 +1,2 @@
+docker build -t my-sqlserver .
+docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=yourStrongPassword123" -p 1433:1433 --name sql-container -d my-sqlserver
