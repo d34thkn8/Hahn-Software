@@ -53,10 +53,36 @@ export class HomeComponent implements OnInit {
   }
 
   saveApi(data:ProjectModel){
-
+    this.loading.show();
+    this.projectService.add(data).subscribe({
+      next:(data)=>{
+        console.log(data);
+        this.mensajes.success("Project added successfully");
+        this.loading.hide();
+        this.loadData();
+      },
+      error:(err)=>{
+        console.log(err);
+        this.mensajes.error("Something happened");
+        this.loading.hide();
+      }
+    })
   }
   updateApi(data:ProjectModel){
-
+    this.loading.show();
+    this.projectService.update(data.id,data).subscribe({
+      next:(data)=>{
+        console.log(data);
+        this.mensajes.success("Project updated successfully");
+        this.loading.hide();
+        this.loadData();
+      },
+      error:(err)=>{
+        console.log(err);
+        this.mensajes.error("Something happened");
+        this.loading.hide();
+      }
+    })
   }
   edit(data:ProjectModel){
     this.item=data;
