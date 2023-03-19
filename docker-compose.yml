@@ -8,14 +8,14 @@ services:
       - "1433:1433"
 
   api:
-    build: ./ReplacementTool.API
+    build: ./ReplacementTool.API/ReplacementTool.API
     container_name: api
     ports:
       - "5000:80"
     depends_on:
       - sqlserver
     environment:
-      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=ReplacementToolDb;User Id=sa;Password=4DM1NP4$$W0RD9173;TrustServerCertificate=True;
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=ReplacementToolDb;User Id=sa;Password=Jk5@7eQz;TrustServerCertificate=True;
 
   angular:
     build: ./FRONT
