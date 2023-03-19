@@ -18,12 +18,12 @@ export class ProjectService {
     return this.http.post(this.route,data);
   }
   getById(id:number):Observable<ProjectModel>{
-    return this.http.get(`${this.route}${id}`);
+    return this.http.get(`${this.route}/${id}`);
   }
   update(id:number,data:ProjectModel):Observable<any>{
-    return this.http.put(`${this.route}${id}`,data);
+    return this.http.put(`${this.route}/${id}`,data);
   }
   delete(id:number):Observable<ProjectModel>{
-    return this.http.delete(`${this.route}${id}`);
+    return this.http.delete(`${this.route}/${id}`);
   }
 }

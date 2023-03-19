@@ -64,7 +64,20 @@ export class HomeComponent implements OnInit {
     this.editing=true;
   }
   delete(data:ProjectModel){
-
+    this.loading.show();
+    this.projectService.delete(data.id).subscribe({
+      next:(data)=>{
+        console.log(data);
+        this.mensajes.success("Project deleted successfully");
+        this.loading.hide();
+        this.loadData();
+      },
+      error:(err)=>{
+        console.log(err);
+        this.mensajes.error("Something happened");
+        this.loading.hide();
+      }
+    })
   }
   add(){
     this.item={
