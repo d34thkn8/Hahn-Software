@@ -1,35 +1,66 @@
-
-    <div class="row2" align="center" >
-        <div class="principal row">
-            <mat-form-field class="example-full-width">
-                <mat-label>Buscar Esto</mat-label>
-                <textarea matInput [(ngModel)]="valorX"></textarea>
-              </mat-form-field>
-              <mat-form-field class="example-full-width">
-                <mat-label>Reemplazarlo por esto</mat-label>
-                <textarea matInput [(ngModel)]="valorY" ></textarea>
-              </mat-form-field>
-              <button mat-raised-button (click)="add()" >Agregar</button>
-              <br>
-              <div class="container">
-                <div *ngFor="let item of project.infoList" >
-                    <p class="border" >{{item.valueX}}</p>
-                    <p class="border">{{item.valueY}}</p>
-                    <button mat-icon-button (click)="eliminar(item)"> <mat-icon>delete</mat-icon> </button>
-                  </div>
+<div class="row2" align="center" >
+    <div class="principal row">
+<mat-accordion>
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Project Name
+        </mat-panel-title>
+        <mat-panel-description>
+            {{project.description}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="row">
+        <mat-form-field class="example-full-width">
+            <mat-label>Project Name</mat-label>
+            <textarea matInput [(ngModel)]="project.description"></textarea>
+          </mat-form-field>
+        </div>
+    </mat-expansion-panel>
+    <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Items
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-form-field class="example-full-width">
+            <mat-label>Look for...</mat-label>
+            <textarea matInput [(ngModel)]="valorX"></textarea>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>and Replace for...</mat-label>
+            <textarea matInput [(ngModel)]="valorY" ></textarea>
+          </mat-form-field>
+          <button mat-raised-button (click)="add()" >Add</button>
+          <br>
+          <div class="container">
+            <div *ngFor="let item of project.infoList" >
+                <p class="border" >{{item.valueX}}</p>
+                <p class="border">{{item.valueY}}</p>
+                <button mat-icon-button (click)="eliminar(item)"> <mat-icon>delete</mat-icon> </button>
               </div>
-              <br>
-              <mat-form-field class="entrada">
-                <mat-label>Entrada</mat-label>
-                <textarea matInput rows="7" [(ngModel)]="input" (keyup.enter)="reemplazar()" ></textarea>
-              </mat-form-field>
-              <button mat-raised-button (click)="reemplazar()" >Reemplazar</button>
-              <br>
-              <br>
-              <mat-form-field class="entrada">
-                <mat-label>Salida</mat-label>
-                <textarea matInput rows="7" [(ngModel)]="output" ></textarea>
-              </mat-form-field>
+          </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Functionality
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-form-field class="entrada">
+            <mat-label>Input</mat-label>
+            <textarea matInput rows="3" [(ngModel)]="input" (keyup.enter)="reemplazar()" ></textarea>
+          </mat-form-field>
+          <button mat-raised-button (click)="reemplazar()" >Replace</button>
+          <br>
+          <br>
+          <mat-form-field class="entrada">
+            <mat-label>Output</mat-label>
+            <textarea matInput rows="4" [(ngModel)]="output" ></textarea>
+          </mat-form-field>
+      </mat-expansion-panel>
+  </mat-accordion>
+    
             
           </div>
     </div>

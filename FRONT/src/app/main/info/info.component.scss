@@ -1,0 +1,28 @@
+.principal{
+    margin: 10px 10px 10px 10px ;
+}
+.texto{
+    color: black;
+    margin-right: 20px;
+    margin-bottom: 5px;
+}
+p {
+    width: 40%;
+    margin: 10px;
+    display: inline-block;
+    border: 1px solid #110c0c; // Cambia el color y el grosor del borde según tus preferencias
+    padding: 10px; // Añade espacio interior alrededor del texto
+    display: inline-block; // Hace que el borde se ajuste al contenido del párrafo
+  }
+  .entrada{
+    width: 100%;
+  }
+  .example-full-width{
+    margin: 10px;
+    width: 45%;
+  }
+  .container{
+    height: 300px;
+    width: 100%;
+    overflow-y: auto;
+  }

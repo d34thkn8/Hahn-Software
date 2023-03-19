@@ -12,7 +12,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { InfoComponent } from './info/info.component';
-
+import {MatExpansionModule} from '@angular/material/expansion';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -30,7 +30,8 @@ import { InfoComponent } from './info/info.component';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatExpansionModule
   ]
 })
 export class MainModule { }
