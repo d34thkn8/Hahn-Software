@@ -5,6 +5,7 @@ using ReplacementTool.API.Infrastructure.Persistence;
 using ReplacementTool.API.Domain.Interfaces;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,7 +41,21 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 app.UseCors("CorsPolicy");
-
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    try
+    {
+        var context = services.GetRequiredService<ApplicationDbContext>();
+        context.Database.EnsureCreated(); // Create Database if not exist
+        context.Database.Migrate(); // Apply migrations
+    }
+    catch (Exception ex)
+    {
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "An error occurred creating the database.");
+    }
+}
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
