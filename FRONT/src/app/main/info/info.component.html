@@ -1,12 +1,45 @@
+
+    <div class="row2" align="center" >
+        <div class="principal row">
+            <mat-form-field class="example-full-width">
+                <mat-label>Buscar Esto</mat-label>
+                <textarea matInput [(ngModel)]="valorX"></textarea>
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <mat-label>Reemplazarlo por esto</mat-label>
+                <textarea matInput [(ngModel)]="valorY" ></textarea>
+              </mat-form-field>
+              <button mat-raised-button (click)="add()" >Agregar</button>
+              <br>
+              <div class="container">
+                <div *ngFor="let item of project.infoList" >
+                    <p class="border" >{{item.valueX}}</p>
+                    <p class="border">{{item.valueY}}</p>
+                    <button mat-icon-button (click)="eliminar(item)"> <mat-icon>delete</mat-icon> </button>
+                  </div>
+              </div>
+              <br>
+              <mat-form-field class="entrada">
+                <mat-label>Entrada</mat-label>
+                <textarea matInput rows="7" [(ngModel)]="input" (keyup.enter)="reemplazar()" ></textarea>
+              </mat-form-field>
+              <button mat-raised-button (click)="reemplazar()" >Reemplazar</button>
+              <br>
+              <br>
+              <mat-form-field class="entrada">
+                <mat-label>Salida</mat-label>
+                <textarea matInput rows="7" [(ngModel)]="output" ></textarea>
+              </mat-form-field>
+            
+          </div>
+    </div>
 <div class="row2" align="right" >
     <button mat-raised-button (click)="cancel()">
         Cancel
         <mat-icon class="edit" >cancel</mat-icon>
       </button>
-</div>
-<div class="row2" align="left" >
-    <button mat-raised-button (click)="save()">
-        Save
-        <mat-icon class="edit" >save</mat-icon>
-      </button>
-</div>
+      <button mat-raised-button (click)="save()">
+          Save
+          <mat-icon class="edit" >save</mat-icon>
+        </button>
+    </div>
