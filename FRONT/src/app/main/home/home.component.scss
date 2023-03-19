@@ -26,7 +26,7 @@
   .fila:hover {
     background-color: #60b0f222 !important;
   }
-  button{
+  .table-btn {
     margin-top: -10px !important;
     padding-bottom: 15px;
   }
@@ -35,4 +35,10 @@
   }
   .edit{
     color: rgba(42, 149, 202, 0.713);
+  }
+  .row button{
+    margin-bottom: 10px;
+  }
+  .row2{
+    align-self: right;
   }

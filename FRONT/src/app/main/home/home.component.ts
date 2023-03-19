@@ -13,6 +13,9 @@ import { ProjectModel } from './model/project.interface';
 export class HomeComponent implements OnInit {
   dataSource:MatTableDataSource<ProjectModel>;
   columnsToDisplay:string[]=['description','edit','delete'];
+  showingInfo:boolean=false;
+  editing:boolean=false;
+
   constructor(private projectService:ProjectService,
     private mensajes:ToastrService,
     private loading: ProgressSpinnerService){
@@ -21,6 +24,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.loadData();
   }
+
   loadData() {
     this.loading.show({
       message:'Projects',
@@ -35,7 +39,7 @@ export class HomeComponent implements OnInit {
       },
       error:(err)=>{
         console.log(err);
-        this.mensajes.error("Somethins happened");
+        this.mensajes.error("Something happened");
         this.loading.hide();
       }
     })
@@ -44,6 +48,13 @@ export class HomeComponent implements OnInit {
 
   }
   delete(data:ProjectModel){
+
+  }
+  add(){
+    this.showingInfo=true;
+  }
+  
+  cancel(){
 
   }
  
