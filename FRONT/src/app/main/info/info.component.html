@@ -1,84 +1,107 @@
-<div class="row2" align="center" >
-    <div class="principal row">
-<mat-accordion>
-    <mat-expansion-panel hideToggle>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Project Name
-        </mat-panel-title>
-        <mat-panel-description>
-            {{project.description}}
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <div class="row">
-        <form [formGroup]="projectForm">
-            <mat-form-field class="example-full-width">
-                <mat-label>Project Name</mat-label>
-                <input id="description" matInput formControlName="description" (blur)="description!.markAsTouched()"/>
-                <mat-error *ngIf="description!.errors && description!.errors['required']">Description is required.</mat-error>
-                <mat-error *ngIf="description!.errors && description!.errors['minlength']">Description must be at least {{ description!.errors['minlength'].requiredLength }} characters.</mat-error>
-              </mat-form-field>
-        </form>
-        </div>
-    </mat-expansion-panel>
-    <mat-expansion-panel hideToggle>
+<div class="row2" align="center">
+  <div class="principal row">
+    <mat-accordion>
+      <mat-expansion-panel hideToggle>
         <mat-expansion-panel-header>
-          <mat-panel-title>
-            Items
-          </mat-panel-title>
+          <mat-panel-title> Project Name </mat-panel-title>
+          <mat-panel-description>
+            {{ project.description }}
+          </mat-panel-description>
         </mat-expansion-panel-header>
-        <form [formGroup]="infoForm">
-            <mat-form-field class="example-full-width" >
-                <mat-label>Look for...</mat-label>
-                <textarea matInput formControlName="valueX" ></textarea>
-                <mat-error *ngIf="valueX!.errors && valueX!.errors['required']">This field is required.</mat-error>
-                <mat-error *ngIf="valueX!.errors && valueX!.errors['minlength']">This field must be at least {{ valueX!.errors['minlength'].requiredLength }} characters.</mat-error>
-            </mat-form-field>
+        <div class="row">
+          <form [formGroup]="projectForm">
             <mat-form-field class="example-full-width">
-                <mat-label>and Replace for...</mat-label>
-                <textarea matInput formControlName="valueY" ></textarea>
+              <mat-label>Project Name</mat-label>
+              <input
+                id="description"
+                matInput
+                formControlName="description"
+                (blur)="description!.markAsTouched()"
+              />
+              <mat-error
+                *ngIf="description!.errors && description!.errors['required']"
+                >Description is required.</mat-error
+              >
+              <mat-error
+                *ngIf="description!.errors && description!.errors['minlength']"
+                >Description must be at least
+                {{
+                  description!.errors["minlength"].requiredLength
+                }}
+                characters.</mat-error
+              >
             </mat-form-field>
-            <button mat-raised-button (click)="add()" >Add</button>
-        </form>
-       
-          <br>
-          <div class="container">
-            <div *ngFor="let item of project.infoList" >
-                <p class="border" >{{item.valueX}}</p>
-                <p class="border">{{item.valueY}}</p>
-                <button mat-icon-button (click)="eliminar(item)"> <mat-icon>delete</mat-icon> </button>
-              </div>
-          </div>
+          </form>
+        </div>
       </mat-expansion-panel>
       <mat-expansion-panel hideToggle>
         <mat-expansion-panel-header>
-          <mat-panel-title>
-            Functionality
-          </mat-panel-title>
+          <mat-panel-title> Items </mat-panel-title>
+        </mat-expansion-panel-header>
+        <form [formGroup]="infoForm">
+          <mat-form-field class="example-full-width">
+            <mat-label>Look for...</mat-label>
+            <textarea matInput formControlName="valueX"></textarea>
+            <mat-error *ngIf="valueX!.errors && valueX!.errors['required']"
+              >This field is required.</mat-error
+            >
+            <mat-error *ngIf="valueX!.errors && valueX!.errors['minlength']"
+              >This field must be at least
+              {{
+                valueX!.errors["minlength"].requiredLength
+              }}
+              characters.</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>and Replace for...</mat-label>
+            <textarea matInput formControlName="valueY"></textarea>
+          </mat-form-field>
+          <button mat-raised-button (click)="add()">Add</button>
+        </form>
+
+        <br />
+        <div class="container">
+          <div *ngFor="let item of project.infoList">
+            <p class="border">{{ item.valueX }}</p>
+            <p class="border">{{ item.valueY }}</p>
+            <button mat-icon-button (click)="eliminar(item)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title> Functionality </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-form-field class="entrada">
-            <mat-label>Input</mat-label>
-            <textarea matInput rows="3" [(ngModel)]="input" (keyup.enter)="reemplazar()" ></textarea>
-          </mat-form-field>
-          <button mat-raised-button (click)="reemplazar()" >Replace</button>
-          <br>
-          <mat-form-field class="entrada">
-            <mat-label>Output</mat-label>
-            <textarea matInput rows="4" [(ngModel)]="output" ></textarea>
-          </mat-form-field>
+          <mat-label>Input</mat-label>
+          <textarea
+            matInput
+            rows="3"
+            [(ngModel)]="input"
+            (keyup.enter)="reemplazar()"
+          ></textarea>
+        </mat-form-field>
+        <button mat-raised-button (click)="reemplazar()">Replace</button>
+        <br />
+        <br />
+        <mat-form-field class="entrada">
+          <mat-label>Output</mat-label>
+          <textarea matInput rows="4" [(ngModel)]="output"></textarea>
+        </mat-form-field>
       </mat-expansion-panel>
-  </mat-accordion>
-    
-            
-          </div>
-    </div>
-<div class="row2" align="right" >
-    <button mat-raised-button (click)="cancel()">
-        Cancel
-        <mat-icon class="edit" >cancel</mat-icon>
-      </button>
-      <button mat-raised-button (click)="save()">
-          Save
-          <mat-icon class="edit" >save</mat-icon>
-        </button>
-    </div>
+    </mat-accordion>
+  </div>
+</div>
+<div  align="right">
+  <button class="button-row" mat-raised-button (click)="cancel()">
+    Cancel
+    <mat-icon>cancel</mat-icon>
+  </button>
+  <button class="button-row" mat-raised-button (click)="save()">
+    Save
+    <mat-icon>save</mat-icon>
+  </button>
+</div>
