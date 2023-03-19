@@ -11,10 +11,12 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { InfoComponent } from './info/info.component';
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
+    InfoComponent
   ],
   imports: [
     CommonModule,
