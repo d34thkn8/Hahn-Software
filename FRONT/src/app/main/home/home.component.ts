@@ -1,5 +1,4 @@
 import { ProjectService } from './services/project.service';
-import { SesionService } from 'src/app/core/services/sesion.services';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ProgressSpinnerService } from 'src/app/core/components/progress-spinner/progress-spinner/services/progress-spinner.service';
@@ -15,12 +14,13 @@ export class HomeComponent implements OnInit {
   columnsToDisplay:string[]=['description','edit','delete'];
   showingInfo:boolean=false;
   editing:boolean=false;
-
+  item!:ProjectModel;
   constructor(private projectService:ProjectService,
     private mensajes:ToastrService,
     private loading: ProgressSpinnerService){
       this.dataSource=new MatTableDataSource();
     }
+
   ngOnInit(): void {
     this.loadData();
   }
@@ -44,18 +44,41 @@ export class HomeComponent implements OnInit {
       }
     })
   }
-  edit(data:ProjectModel){
+  saveEvent(data:ProjectModel){
+    if(this.editing){
+      this.updateApi(data);
+    }else{
+      this.saveApi(data);
+    }
+  }
 
+  saveApi(data:ProjectModel){
+
+  }
+  updateApi(data:ProjectModel){
+
+  }
+  edit(data:ProjectModel){
+    this.item=data;
+    this.showingInfo=true;
+    this.editing=true;
   }
   delete(data:ProjectModel){
 
   }
   add(){
+    this.item={
+      id:0,
+      description:'',
+      infoList:[]
+    };
     this.showingInfo=true;
+    this.editing=false;
   }
-  
-  cancel(){
 
+  cancel(){
+    this.showingInfo=false;
+    this.editing=false;
   }
  
 }
