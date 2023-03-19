@@ -1,15 +1,21 @@
 import { ProjectService } from './services/project.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ProgressSpinnerService } from 'src/app/core/components/progress-spinner/progress-spinner/services/progress-spinner.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { ProjectModel } from './model/project.interface';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit {
+
+  @ViewChild('paginator') paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
   dataSource:MatTableDataSource<ProjectModel>;
   columnsToDisplay:string[]=['description','edit','delete'];
   showingInfo:boolean=false;
@@ -24,7 +30,10 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.loadData();
   }
-
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
   loadData() {
     this.loading.show({
       message:'Projects',
