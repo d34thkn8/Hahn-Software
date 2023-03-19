@@ -11,10 +11,14 @@
         </mat-panel-description>
       </mat-expansion-panel-header>
       <div class="row">
-        <mat-form-field class="example-full-width">
-            <mat-label>Project Name</mat-label>
-            <textarea matInput [(ngModel)]="project.description"></textarea>
-          </mat-form-field>
+        <form [formGroup]="projectForm">
+            <mat-form-field class="example-full-width">
+                <mat-label>Project Name</mat-label>
+                <input id="description" matInput formControlName="description" (blur)="description!.markAsTouched()"/>
+                <mat-error *ngIf="description!.errors && description!.errors['required']">Description is required.</mat-error>
+                <mat-error *ngIf="description!.errors && description!.errors['minlength']">Description must be at least {{ description!.errors['minlength'].requiredLength }} characters.</mat-error>
+              </mat-form-field>
+        </form>
         </div>
     </mat-expansion-panel>
     <mat-expansion-panel hideToggle>
@@ -23,15 +27,20 @@
             Items
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <mat-form-field class="example-full-width">
-            <mat-label>Look for...</mat-label>
-            <textarea matInput [(ngModel)]="valorX"></textarea>
-          </mat-form-field>
-          <mat-form-field class="example-full-width">
-            <mat-label>and Replace for...</mat-label>
-            <textarea matInput [(ngModel)]="valorY" ></textarea>
-          </mat-form-field>
-          <button mat-raised-button (click)="add()" >Add</button>
+        <form [formGroup]="infoForm">
+            <mat-form-field class="example-full-width" >
+                <mat-label>Look for...</mat-label>
+                <textarea matInput formControlName="valueX" ></textarea>
+                <mat-error *ngIf="valueX!.errors && valueX!.errors['required']">This field is required.</mat-error>
+                <mat-error *ngIf="valueX!.errors && valueX!.errors['minlength']">This field must be at least {{ valueX!.errors['minlength'].requiredLength }} characters.</mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>and Replace for...</mat-label>
+                <textarea matInput formControlName="valueY" ></textarea>
+            </mat-form-field>
+            <button mat-raised-button (click)="add()" >Add</button>
+        </form>
+       
           <br>
           <div class="container">
             <div *ngFor="let item of project.infoList" >
@@ -52,7 +61,6 @@
             <textarea matInput rows="3" [(ngModel)]="input" (keyup.enter)="reemplazar()" ></textarea>
           </mat-form-field>
           <button mat-raised-button (click)="reemplazar()" >Replace</button>
-          <br>
           <br>
           <mat-form-field class="entrada">
             <mat-label>Output</mat-label>
