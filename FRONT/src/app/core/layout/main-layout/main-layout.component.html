@@ -1,0 +1,10 @@
+<mat-drawer-container class="example-container" autosize hasBackdrop="true"> 
+    <mat-drawer #drawer class="example-sidenav fondo-2" mode="side">
+        <app-side-menu [rutas]="routes" (onRouteClicked)="drawer.toggle()" ></app-side-menu>
+    </mat-drawer>
+
+    <mat-drawer-content class="fondo">
+        <app-tool-bar (abrirCerrar)="drawer.toggle()"></app-tool-bar>
+        <router-outlet></router-outlet>
+    </mat-drawer-content>
+</mat-drawer-container>

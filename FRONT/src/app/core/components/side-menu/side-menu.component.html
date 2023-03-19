@@ -1,0 +1,33 @@
+
+    <!-- <div *ngFor="let rutaPadre of rutasSecundarias()" class="ruta-sec" [routerLink]="rutaPadre.route">
+      {{rutaPadre.label}}
+    </div> -->
+    <div class="circle-container">
+      {{iniciales}}
+    </div>
+    <div *ngFor="let rutaPadre of rutasSecundarias()" class="ruta-sec" [routerLink]="rutaPadre.route">
+      {{rutaPadre.label}}
+    </div>
+    <mat-accordion multi="false" displayMode="default" >
+      <mat-expansion-panel *ngFor="let rutaPadre of rutasPrincipales()" class="expansion" >
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{rutaPadre.label}}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div *ngFor="let route of rutasHijas(rutaPadre.codigoGrupo1)">
+          <div *ngIf="!route.esLista && route.codigoGrupo2==0" class="ruta-sec nieto-boton" [routerLink]="route.route"  (click)="rutaSeleccionada()" >{{route.label}}</div>
+          <mat-expansion-panel class="expansion exp-nieto" *ngIf="route.esLista">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{route.label}}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="row" *ngFor="let rutaNieta of rutasNietas(route.codigoGrupo1, route.codigoGrupo2)">
+              <div class="ruta-sec" [routerLink]="rutaNieta.route"  (click)="rutaSeleccionada()">{{rutaNieta.label}}</div>
+            </div>
+          </mat-expansion-panel>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+    

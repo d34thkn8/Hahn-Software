@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/ngx-toastr/toastr.css";
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.fondo{
+    background: url('/assets/img/fondo_1.png');
+}
+.fondo-2{
+    background: url('/assets/img/gray_sand.png');
+}
+.text-right {
+    text-align: right !important;
+  }
+  .sticky {
+    position: fixed
+  }

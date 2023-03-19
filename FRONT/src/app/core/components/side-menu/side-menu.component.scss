@@ -1,0 +1,65 @@
+.example-sidenav {
+    
+  padding: 20px;
+}
+.example-container {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  height: 100%;
+}
+
+.example-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.boton-ruta{
+  padding-left: 24px;
+}
+.expansion{
+  margin: 1px;
+}
+.row{
+  margin: auto;
+}
+.texto-home{
+  font-size: 20px;
+  margin-left: 20px;
+}
+.ruta-sec{
+  padding: 6px 1px 10px 25px;
+  margin: 5px 2px 5px 2px;
+  min-width: 200px;
+}
+.ruta-sec:hover{
+  box-shadow: 0.5px 0.5px 3px #000;
+  font-size: 15px;
+  cursor: pointer;
+}
+.nieto-boton{
+  padding: 6px 1px 10px 25px;
+  margin: 5px 2px 5px 2px;
+}
+.exp-nieto{
+  margin: 1px;
+  
+}
+mat-expansion-panel-header, div, mat-expansion-panel{
+  background-color: #8eb0d7;
+}
+.circle-container {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-color: #ccc;
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  margin-bottom: 60px;
+  font-size: 40px;
+  font-weight: bold;
+} 

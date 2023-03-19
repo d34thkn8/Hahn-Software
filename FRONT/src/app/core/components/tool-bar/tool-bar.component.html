@@ -1,0 +1,11 @@
+<mat-toolbar class="toolbar fondo-2" >
+    <button mat-icon-button (click)="toogle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <button mat-button routerLink="/home" class="btn-home">
+      <mat-icon>home</mat-icon>
+      <mat-label class="texto-home">Home</mat-label>
+    </button>
+    <span class="nombre">{{nombre}}</span>
+    <button class="btn-logout" mat-button (click)="logout()" ><mat-icon matPrefix>logout</mat-icon>Cerrar Sesi&oacute;n </button>
+  </mat-toolbar>
