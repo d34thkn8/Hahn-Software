@@ -72,7 +72,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
       },
       error:(err)=>{
         console.log(err);
-        this.mensajes.error("Something happened");
+        var message=err.error.errors.Description;
+        this.mensajes.error("Something happened: "+message);
         this.loading.hide();
       }
     })
@@ -88,7 +89,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
       },
       error:(err)=>{
         console.log(err);
-        this.mensajes.error("Something happened");
+        var message=err.error.errors.Description;
+        this.mensajes.error("Something happened: "+message);
         this.loading.hide();
       }
     })
