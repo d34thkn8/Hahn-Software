@@ -41,7 +41,7 @@
         <form [formGroup]="infoForm">
           <mat-form-field class="example-full-width">
             <mat-label>Look for...</mat-label>
-            <textarea matInput formControlName="valueX"></textarea>
+            <input matInput formControlName="valueX"/>
             <mat-error *ngIf="valueX!.errors && valueX!.errors['required']"
               >This field is required.</mat-error
             >
@@ -55,7 +55,7 @@
           </mat-form-field>
           <mat-form-field class="example-full-width">
             <mat-label>and Replace for...</mat-label>
-            <textarea matInput formControlName="valueY"></textarea>
+            <input matInput formControlName="valueY"/>
           </mat-form-field>
           <button mat-raised-button (click)="add()">Add</button>
         </form>
