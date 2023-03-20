@@ -1,4 +1,3 @@
-import { CUSTOM_DATE_FORMATS } from './core/date-formats/custom-date-formats';
 import { MainModule } from './main/main.module';
 import { LayoutModule } from './core/layout/layout.module';
 import { APP_INITIALIZER,CUSTOM_ELEMENTS_SCHEMA ,NgModule } from '@angular/core';
@@ -13,8 +12,6 @@ import { ToastrModule } from 'ngx-toastr';
 import { authInterceptorProviders } from './security/auth.interceptor';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { DateAdapter, MAT_DATE_FORMATS,MAT_DATE_LOCALE } from '@angular/material/core';
-import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
 export function init_app(appLoadService: AppInitService) {
   return () => appLoadService.init(); 
 }
@@ -39,13 +36,7 @@ export function init_app(appLoadService: AppInitService) {
     deps:[AppInitService],
     multi:true
   }, authInterceptorProviders,
-  {provide: LocationStrategy, useClass: HashLocationStrategy},
-  { provide: MAT_DATE_FORMATS, useValue: CUSTOM_DATE_FORMATS },
-  {
-    provide: DateAdapter,
-    useClass: MomentDateAdapter,
-    deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
-  },
+  {provide: LocationStrategy, useClass: HashLocationStrategy}
 ],
   bootstrap: [AppComponent],
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
