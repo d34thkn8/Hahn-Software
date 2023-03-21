@@ -43,7 +43,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
       next:(data)=>{
         console.log(data);
         this.dataSource.data=data;
-        this.mensajes.success("Data loaded successfully");
         this.loading.hide();
       },
       error:(err)=>{
