@@ -29,3 +29,47 @@ p {
   .button-row{
     margin-inline: 10px;
   }
+  .row{
+    margin: 15px;
+}
+.mat-column-description {
+    flex: 1 1 auto; /* la columna description ocupa todo el ancho disponible */
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-bottom: 2px;
+  }
+  
+  td, th {
+    padding: 12px 16px;
+    text-align: left;
+    vertical-align: middle;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  }
+  
+  th {
+    font-weight: bold;
+  }
+  
+  .fila:hover {
+    background-color: #60b0f222 !important;
+  }
+  .table-btn {
+    margin-top: -10px !important;
+    padding-bottom: 15px;
+  }
+  .danger{
+    color: rgb(193, 89, 89);
+  }
+  .edit{
+    color: rgba(42, 149, 202, 0.713);
+  }
+  .row button{
+    margin-bottom: 10px;
+  }
+  .row2{
+    align-self: right;
+  }

@@ -13,6 +13,7 @@ export class InfoComponent implements OnInit {
   @Output() onSave:EventEmitter<ProjectModel>=new EventEmitter();
   @Input() project!:ProjectModel;
   
+  columnsToDisplay:string[]=['valueX','valueY','delete'];
   input:string="";
   output:string="";
   projectForm:FormGroup;
@@ -45,13 +46,13 @@ export class InfoComponent implements OnInit {
     this.infoForm.get('valueX')?.setValue('');
     this.infoForm.get('valueY')?.setValue('');
   }
-  eliminar(item:InfoModel){
+  delete(item:InfoModel){
     var indice=this.project.infoList.indexOf(item);
     if(indice>=0){
       this.project.infoList.splice(indice,1);
     }
   }
-  reemplazar() {
+  replace() {
     let out = this.input;
     this.project.infoList.forEach(el => {
       const searchEscaped = el.valueX.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
