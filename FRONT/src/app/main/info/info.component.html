@@ -25,9 +25,7 @@
               <mat-error
                 *ngIf="description!.errors && description!.errors['minlength']"
                 >Description must be at least
-                {{
-                  description!.errors["minlength"].requiredLength
-                }}
+                {{ description!.errors["minlength"].requiredLength }}
                 characters.</mat-error
               >
             </mat-form-field>
@@ -47,9 +45,7 @@
             >
             <mat-error *ngIf="valueX!.errors && valueX!.errors['minlength']"
               >This field must be at least
-              {{
-                valueX!.errors["minlength"].requiredLength
-              }}
+              {{ valueX!.errors["minlength"].requiredLength }}
               characters.</mat-error
             >
           </mat-form-field>
@@ -68,47 +64,55 @@
               <td mat-cell *matCellDef="let item" fxFlex>{{ item.valueX }}</td>
             </ng-container>
             <ng-container matColumnDef="valueY">
-              <th mat-header-cell *matHeaderCellDef fxFlex> ValueY </th>
+              <th mat-header-cell *matHeaderCellDef fxFlex>ValueY</th>
               <td mat-cell *matCellDef="let item" fxFlex>{{ item.valueY }}</td>
             </ng-container>
             <ng-container matColumnDef="delete">
-                <th mat-header-cell *matHeaderCellDef fxFlex="100px">
-                  Delete
-                </th>
-                <td mat-cell *matCellDef="let item" fxFlex="100px">
-                  <button mat-icon-button class="table-btn btn-delete" (click)="delete(item)">
-                    <mat-icon class="danger" >delete</mat-icon>
-                  </button>
-                </td>
-              </ng-container>
+              <th mat-header-cell *matHeaderCellDef fxFlex="100px">Delete</th>
+              <td mat-cell *matCellDef="let item" fxFlex="100px">
+                <button
+                  mat-icon-button
+                  class="table-btn btn-delete"
+                  (click)="delete(item)"
+                >
+                  <mat-icon class="danger">delete</mat-icon>
+                </button>
+              </td>
+            </ng-container>
             <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-            <tr class="fila" mat-row *matRowDef="let row; columns: columnsToDisplay"></tr>
-        </table>
+            <tr
+              class="fila"
+              mat-row
+              *matRowDef="let row; columns: columnsToDisplay"
+            ></tr>
+          </table>
         </div>
       </mat-expansion-panel>
       <mat-expansion-panel hideToggle>
         <mat-expansion-panel-header>
           <mat-panel-title> Manual Functionality </mat-panel-title>
-          <mat-panel-description>
-            For old browsers
-          </mat-panel-description>
+          <mat-panel-description> For old browsers </mat-panel-description>
         </mat-expansion-panel-header>
         <mat-form-field class="entrada">
           <mat-label>Input</mat-label>
           <textarea
+            class="col col-md-6"
             matInput
             rows="3"
             [(ngModel)]="input"
             (keyup.enter)="replace()"
           ></textarea>
         </mat-form-field>
-        <button mat-raised-button (click)="replace()">Replace</button>
-        <br />
-        <br />
         <mat-form-field class="entrada">
           <mat-label>Output</mat-label>
-          <textarea matInput rows="4" [(ngModel)]="output"></textarea>
+          <textarea
+          class="col col-md-6"
+          matInput
+          rows="4"
+          [(ngModel)]="output"
+          ></textarea>
         </mat-form-field>
+        <button mat-raised-button (click)="replace()">Replace</button>
       </mat-expansion-panel>
       <mat-expansion-panel hideToggle>
         <mat-expansion-panel-header>
@@ -119,7 +123,7 @@
     </mat-accordion>
   </div>
 </div>
-<div  align="right">
+<div align="right">
   <button class="button-row" mat-raised-button (click)="cancel()">
     Cancel
     <mat-icon>cancel</mat-icon>
