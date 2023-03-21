@@ -30,7 +30,6 @@ export class ToolBarComponent implements OnInit {
     this.router.navigate(['']);
   }
   toogle(){
-    console.log("Emitio Hijo toolbar");
     this.abrirCerrar.emit();
   }
 }

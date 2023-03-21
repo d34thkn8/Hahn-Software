@@ -41,12 +41,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
     });
     this.projectService.list().subscribe({
       next:(data)=>{
-        console.log(data);
+        
         this.dataSource.data=data;
         this.loading.hide();
       },
       error:(err)=>{
-        console.log(err);
+        
         this.loading.hide();
         var message=err != undefined && err.error !=undefined && err.error.errors!=undefined ? err.error.errors.Description:'';
         this.mensajes.error("Something happened: "+message);
@@ -65,14 +65,14 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.loading.show();
     this.projectService.add(data).subscribe({
       next:(data)=>{
-        console.log(data);
+        
         this.mensajes.success("Project added successfully");
         this.loading.hide();
         this.loadData();
         this.showingInfo=false;
       },
       error:(err)=>{
-        console.log(err);
+        
         this.loading.hide();
         var message=err != undefined && err.error !=undefined && err.error.errors!=undefined ? err.error.errors.Description:'';
         this.mensajes.error("Something happened: "+message);
@@ -83,14 +83,14 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.loading.show();
     this.projectService.update(data.id,data).subscribe({
       next:(data)=>{
-        console.log(data);
+        
         this.mensajes.success("Project updated successfully");
         this.loading.hide();
         this.loadData();
         this.showingInfo=false;
       },
       error:(err)=>{
-        console.log(err);
+        
         this.loading.hide();
         var message=err != undefined && err.error !=undefined && err.error.errors!=undefined ? err.error.errors.Description:'';
         this.mensajes.error("Something happened: "+message);
@@ -107,13 +107,13 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.loading.show();
     this.projectService.delete(data.id).subscribe({
       next:(data)=>{
-        console.log(data);
+        
         this.mensajes.success("Project deleted successfully");
         this.loading.hide();
         this.loadData();
       },
       error:(err)=>{
-        console.log(err);
+        
         this.loading.hide();
         var message=err != undefined && err.error !=undefined && err.error.errors!=undefined ? err.error.errors.Description:'';
         this.mensajes.error("Something happened: "+message);

@@ -16,7 +16,6 @@ export class AuthInterceptor implements HttpInterceptor {
     private toastr:ToastrService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    //console.log("Interceptor llamado");
     let authReq = req;
     let user=this.servicioSesion.getUsuario();
     if(user!=undefined){
