@@ -88,7 +88,10 @@
       </mat-expansion-panel>
       <mat-expansion-panel hideToggle>
         <mat-expansion-panel-header>
-          <mat-panel-title> Functionality </mat-panel-title>
+          <mat-panel-title> Manual Functionality </mat-panel-title>
+          <mat-panel-description>
+            For old browsers
+          </mat-panel-description>
         </mat-expansion-panel-header>
         <mat-form-field class="entrada">
           <mat-label>Input</mat-label>
@@ -106,6 +109,12 @@
           <mat-label>Output</mat-label>
           <textarea matInput rows="4" [(ngModel)]="output"></textarea>
         </mat-form-field>
+      </mat-expansion-panel>
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title> Automated Functionality </mat-panel-title>
+        </mat-expansion-panel-header>
+        <button mat-raised-button (click)="replaceAuto()">Replace</button>
       </mat-expansion-panel>
     </mat-accordion>
   </div>
