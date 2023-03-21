@@ -1,3 +1,4 @@
+import { MatTableDataSource } from '@angular/material/table';
 import { InfoModel } from './../home/model/info.interface';
 import { ProjectModel } from './../home/model/project.interface';
 import { Component, Output, EventEmitter, Input, OnInit } from '@angular/core';
@@ -16,6 +17,7 @@ export class InfoComponent implements OnInit {
   columnsToDisplay:string[]=['valueX','valueY','delete'];
   input:string="";
   output:string="";
+  dataSource:MatTableDataSource<InfoModel>;
   projectForm:FormGroup;
   infoForm :FormGroup;
   get description() {
@@ -32,17 +34,21 @@ export class InfoComponent implements OnInit {
       valueX: ['', RequiredLenght1],
       valueY: ['']
     });
+    this.dataSource=new MatTableDataSource();
   }
   ngOnInit(): void {
     this.projectForm.get('description')?.setValue(this.project.description);
+    this.dataSource.data=this.project.infoList;
   }
   add(){
-    this.project.infoList.push({
+    var data={
       valueX:this.infoForm.get('valueX')?.value!,
       valueY:this.infoForm.get('valueY')?.value!,
       id:0,
       projectId:this.project.id
-    });
+    };
+    this.project.infoList.push(data);
+    this.dataSource.data=this.project.infoList;
     this.infoForm.get('valueX')?.setValue('');
     this.infoForm.get('valueY')?.setValue('');
   }
@@ -50,6 +56,7 @@ export class InfoComponent implements OnInit {
     var indice=this.project.infoList.indexOf(item);
     if(indice>=0){
       this.project.infoList.splice(indice,1);
+      this.dataSource.data=this.project.infoList;
     }
   }
   replace() {

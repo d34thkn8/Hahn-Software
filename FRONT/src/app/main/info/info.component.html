@@ -62,7 +62,7 @@
 
         <br />
         <div class="container">
-          <table mat-table [dataSource]="project.infoList" class="mat-elevation-z8">
+          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
             <ng-container matColumnDef="valueX">
               <th mat-header-cell *matHeaderCellDef fxFlex>ValueX</th>
               <td mat-cell *matCellDef="let item" fxFlex>{{ item.valueX }}</td>
