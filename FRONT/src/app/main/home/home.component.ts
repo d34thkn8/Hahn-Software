@@ -70,6 +70,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         this.mensajes.success("Project added successfully");
         this.loading.hide();
         this.loadData();
+        this.showingInfo=false;
       },
       error:(err)=>{
         console.log(err);
@@ -87,6 +88,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         this.mensajes.success("Project updated successfully");
         this.loading.hide();
         this.loadData();
+        this.showingInfo=false;
       },
       error:(err)=>{
         console.log(err);
@@ -97,7 +99,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
     })
   }
   edit(data:ProjectModel){
-    this.item=data;
+    var strData=JSON.stringify(data);
+    this.item=JSON.parse(strData);
     this.showingInfo=true;
     this.editing=true;
   }
