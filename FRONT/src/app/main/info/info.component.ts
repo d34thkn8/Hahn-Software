@@ -5,8 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { InfoModel } from './../home/model/info.interface';
 import { ProjectModel } from './../home/model/project.interface';
 import { Component, Output, EventEmitter, Input, OnInit } from '@angular/core';
-// import { RequiredLenght1 } from 'src/app/core/validations/project-validations';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { InfoModelValidator } from 'src/app/core/validations/info-validations';
 @Component({
   selector: 'app-info',
@@ -24,8 +23,7 @@ export class InfoComponent implements OnInit {
   dataSource:MatTableDataSource<InfoModel>;
   valueX: string="";
   valueY: string="";
-  constructor(private fb: FormBuilder,
-    private messages:ToastrService,
+  constructor(private messages:ToastrService,
     private spinner:ProgressSpinnerService){
     this.dataSource=new MatTableDataSource();
   }
