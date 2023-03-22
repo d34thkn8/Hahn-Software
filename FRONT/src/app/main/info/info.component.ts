@@ -7,6 +7,7 @@ import { ProjectModel } from './../home/model/project.interface';
 import { Component, Output, EventEmitter, Input, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { InfoModelValidator } from 'src/app/core/validations/info-validations';
+import { ReplacementLib } from 'src/app/util/replacement-lib';
 @Component({
   selector: 'app-info',
   templateUrl: './info.component.html',
@@ -70,23 +71,30 @@ export class InfoComponent implements OnInit {
   async replaceAuto(){
     if(navigator.clipboard){
       this.spinner.show();
-      await navigator.clipboard
-      .readText()
-      .then(async (copiedText) => {
-        this.project.infoList.forEach(el => {
-          copiedText = this.replaceText(copiedText,el.valueX, el.valueY);
-        });
-        await navigator.clipboard.writeText(copiedText).then(() => {
-            this.messages.success("Replaced text coppied to clipboard");
-            this.spinner.hide();
-        }).catch((err)=>{
-          this.messages.show("Clipboard error", err);
-          this.spinner.hide();
-        });;
-      }).catch((err)=>{
-        this.messages.show("Clipboard error", err);
+      await ReplacementLib.replace(this.project).then((text)=>{
+        this.messages.success(text);
         this.spinner.hide();
-      });
+      }).catch((err)=>{
+        this.messages.error(err);
+        this.spinner.hide();
+      })
+      // await navigator.clipboard
+      // .readText()
+      // .then(async (copiedText) => {
+      //   this.project.infoList.forEach(el => {
+      //     copiedText = this.replaceText(copiedText,el.valueX, el.valueY);
+      //   });
+      //   await navigator.clipboard.writeText(copiedText).then(() => {
+      //       this.messages.success("Replaced text coppied to clipboard");
+      //       this.spinner.hide();
+      //   }).catch((err)=>{
+      //     this.messages.show("Clipboard error", err);
+      //     this.spinner.hide();
+      //   });;
+      // }).catch((err)=>{
+      //   this.messages.show("Clipboard error", err);
+      //   this.spinner.hide();
+      // });
     }else{
       this.messages.error("Browser not supported");
     }

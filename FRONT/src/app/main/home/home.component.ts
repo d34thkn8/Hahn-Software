@@ -1,3 +1,4 @@
+import { ReplacementLib } from 'src/app/util/replacement-lib';
 import { ProjectService } from './services/project.service';
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
@@ -17,12 +18,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   dataSource:MatTableDataSource<ProjectModel>;
-  columnsToDisplay:string[]=['description','edit','delete'];
+  columnsToDisplay:string[]=['description','edit','use','delete'];
   showingInfo:boolean=false;
   editing:boolean=false;
   item!:ProjectModel;
   constructor(private projectService:ProjectService,
-    private mensajes:ToastrService,
+    private messages:ToastrService,
     private loading: ProgressSpinnerService){
       this.dataSource=new MatTableDataSource();
     }
@@ -49,7 +50,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         
         this.loading.hide();
         var message=err != undefined && err.error !=undefined && err.error.errors!=undefined ? err.error.errors.Description:'';
-        this.mensajes.error("Something happened: "+message);
+        this.messages.error("Something happened: "+message);
       }
     })
   }
@@ -66,7 +67,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.projectService.add(data).subscribe({
       next:(data)=>{
         
-        this.mensajes.success("Project added successfully");
+        this.messages.success("Project added successfully");
         this.loading.hide();
         this.loadData();
         this.showingInfo=false;
@@ -75,7 +76,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         
         this.loading.hide();
         var message=err != undefined && err.error !=undefined && err.error.errors!=undefined ? err.error.errors.Description:'';
-        this.mensajes.error("Something happened: "+message);
+        this.messages.error("Something happened: "+message);
       }
     })
   }
@@ -84,7 +85,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.projectService.update(data.id,data).subscribe({
       next:(data)=>{
         
-        this.mensajes.success("Project updated successfully");
+        this.messages.success("Project updated successfully");
         this.loading.hide();
         this.loadData();
         this.showingInfo=false;
@@ -93,7 +94,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         
         this.loading.hide();
         var message=err != undefined && err.error !=undefined && err.error.errors!=undefined ? err.error.errors.Description:'';
-        this.mensajes.error("Something happened: "+message);
+        this.messages.error("Something happened: "+message);
       }
     })
   }
@@ -108,7 +109,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.projectService.delete(data.id).subscribe({
       next:(data)=>{
         
-        this.mensajes.success("Project deleted successfully");
+        this.messages.success("Project deleted successfully");
         this.loading.hide();
         this.loadData();
       },
@@ -116,9 +117,24 @@ export class HomeComponent implements OnInit, AfterViewInit {
         
         this.loading.hide();
         var message=err != undefined && err.error !=undefined && err.error.errors!=undefined ? err.error.errors.Description:'';
-        this.mensajes.error("Something happened: "+message);
+        this.messages.error("Something happened: "+message);
       }
     })
+  }
+  async replace(data:ProjectModel){
+    
+      if(navigator.clipboard){
+        this.loading.show();
+        await ReplacementLib.replace(data).then((text)=>{
+          this.messages.success(text);
+          this.loading.hide();
+        }).catch((err)=>{
+          this.messages.error(err);
+          this.loading.hide();
+        })
+      }else{
+        this.messages.error("Browser not supported");
+      }
   }
   add(){
     this.item={
