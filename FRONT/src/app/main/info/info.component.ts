@@ -1,11 +1,13 @@
+import { ProjectModelValidator } from './../../core/validations/project-validations';
 import { ProgressSpinnerService } from 'src/app/core/components/progress-spinner/progress-spinner/services/progress-spinner.service';
 import { ToastrService } from 'ngx-toastr';
 import { MatTableDataSource } from '@angular/material/table';
 import { InfoModel } from './../home/model/info.interface';
 import { ProjectModel } from './../home/model/project.interface';
 import { Component, Output, EventEmitter, Input, OnInit } from '@angular/core';
-import { RequiredLenght1 } from 'src/app/core/validations/project-validations';
+// import { RequiredLenght1 } from 'src/app/core/validations/project-validations';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { InfoModelValidator } from 'src/app/core/validations/info-validations';
 @Component({
   selector: 'app-info',
   templateUrl: './info.component.html',
@@ -20,41 +22,33 @@ export class InfoComponent implements OnInit {
   input:string="";
   output:string="";
   dataSource:MatTableDataSource<InfoModel>;
-  projectForm:FormGroup;
-  infoForm :FormGroup;
-  get description() {
-    return this.projectForm.get('description');
-  }
-  get valueX() {
-    return this.infoForm.get('valueX');
-  }
+  valueX: string="";
+  valueY: string="";
   constructor(private fb: FormBuilder,
     private messages:ToastrService,
     private spinner:ProgressSpinnerService){
-    this.projectForm=this.fb.group({
-      description: ['', RequiredLenght1],
-    });
-    this.infoForm = this.fb.group({
-      valueX: ['', RequiredLenght1],
-      valueY: ['']
-    });
     this.dataSource=new MatTableDataSource();
   }
   ngOnInit(): void {
-    this.projectForm.get('description')?.setValue(this.project.description);
     this.dataSource.data=this.project.infoList;
   }
   add(){
-    var data={
-      valueX:this.infoForm.get('valueX')?.value!,
-      valueY:this.infoForm.get('valueY')?.value!,
+    var validator=new InfoModelValidator();
+    var data:InfoModel={
+      valueX:this.valueX,
+      valueY:this.valueY,
       id:0,
       projectId:this.project.id
     };
+    var validationResult=validator.validate(data);
+    if(validationResult.valueX!=undefined){
+      this.messages.error(validationResult.valueX);
+      return;
+    }
     this.project.infoList.push(data);
     this.dataSource.data=this.project.infoList;
-    this.infoForm.get('valueX')?.setValue('');
-    this.infoForm.get('valueY')?.setValue('');
+    this.valueX="";
+    this.valueY="";
   }
   delete(item:InfoModel){
     var indice=this.project.infoList.indexOf(item);
@@ -103,7 +97,12 @@ export class InfoComponent implements OnInit {
     this.onCancel.emit();
   }
   save(){
-    this.project.description=this.projectForm.get('description')?.value!;
+    var validator=new ProjectModelValidator();
+    var validationResult=validator.validate(this.project);
+    if(validationResult.description!=undefined){
+      this.messages.error(validationResult.description);
+      return;
+    }
     this.onSave.emit(this.project!);
   }
 }
