@@ -1,4 +1,4 @@
-<div class="row" *ngIf="!showingInfo">
+<div class="row" [hidden]="showingInfo">
     <div class="row2" align="right" >
         <button mat-raised-button (click)="add()">
             Add
