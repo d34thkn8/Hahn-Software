@@ -56,18 +56,15 @@ export class InfoComponent implements OnInit {
       this.dataSource.data=this.project.infoList;
     }
   }
-  replaceText(mainText:string, searchValue:string, replacementValue:string):string{
-    const searchEscaped = searchValue.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    const regex = new RegExp(searchEscaped, 'g');
-    return mainText.replace(regex, replacementValue);
-  }
+
   replace() {
     let out = this.input;
     this.project.infoList.forEach(el => {
-      out = this.replaceText(out,el.valueX, el.valueY);
+      out = ReplacementLib.replaceText(out,el.valueX, el.valueY);
     });
     this.output = out;
   }
+  
   async replaceAuto(){
     if(navigator.clipboard){
       this.spinner.show();
@@ -78,23 +75,6 @@ export class InfoComponent implements OnInit {
         this.messages.error(err);
         this.spinner.hide();
       })
-      // await navigator.clipboard
-      // .readText()
-      // .then(async (copiedText) => {
-      //   this.project.infoList.forEach(el => {
-      //     copiedText = this.replaceText(copiedText,el.valueX, el.valueY);
-      //   });
-      //   await navigator.clipboard.writeText(copiedText).then(() => {
-      //       this.messages.success("Replaced text coppied to clipboard");
-      //       this.spinner.hide();
-      //   }).catch((err)=>{
-      //     this.messages.show("Clipboard error", err);
-      //     this.spinner.hide();
-      //   });;
-      // }).catch((err)=>{
-      //   this.messages.show("Clipboard error", err);
-      //   this.spinner.hide();
-      // });
     }else{
       this.messages.error("Browser not supported");
     }
