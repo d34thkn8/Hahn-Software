@@ -78,23 +78,6 @@ export class InfoComponent implements OnInit {
         this.messages.error(err);
         this.spinner.hide();
       })
-      // await navigator.clipboard
-      // .readText()
-      // .then(async (copiedText) => {
-      //   this.project.infoList.forEach(el => {
-      //     copiedText = this.replaceText(copiedText,el.valueX, el.valueY);
-      //   });
-      //   await navigator.clipboard.writeText(copiedText).then(() => {
-      //       this.messages.success("Replaced text coppied to clipboard");
-      //       this.spinner.hide();
-      //   }).catch((err)=>{
-      //     this.messages.show("Clipboard error", err);
-      //     this.spinner.hide();
-      //   });;
-      // }).catch((err)=>{
-      //   this.messages.show("Clipboard error", err);
-      //   this.spinner.hide();
-      // });
     }else{
       this.messages.error("Browser not supported");
     }
