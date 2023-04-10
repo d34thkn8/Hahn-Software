@@ -1,3 +1,4 @@
+import { ParameterFinderComponent } from './main/parameter-finder/parameter-finder.component';
 
 import { HomeComponent } from './main/home/home.component';
 import { MainLayoutComponent } from './core/layout/main-layout/main-layout.component';
@@ -12,8 +13,12 @@ const routes: Routes = [
     component:MainLayoutComponent,
     children:[
       {
-        path:'',
+        path:'replace',
         component:HomeComponent
+      },
+      {
+        path:'params',
+        component:ParameterFinderComponent
       },
     ]
   },

@@ -1,0 +1,12 @@
+<div>
+    <button mat-raised-button (click)="onClick()" >Ver Parametros</button>
+    <button mat-raised-button (click)="onClick2()">Generar Lista</button>
+</div>
+<div>
+    
+</div>
+<div>
+    <div *ngFor="let item of lista" >
+        {{item}}
+    </div>
+</div>

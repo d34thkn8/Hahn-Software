@@ -13,10 +13,12 @@ import { MatSortModule } from '@angular/material/sort';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { InfoComponent } from './info/info.component';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { ParameterFinderComponent } from './parameter-finder/parameter-finder.component';
 @NgModule({
   declarations: [
     HomeComponent,
-    InfoComponent
+    InfoComponent,
+    ParameterFinderComponent
   ],
   imports: [
     CommonModule,

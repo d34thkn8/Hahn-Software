@@ -1,20 +1,20 @@
+import { ClipboardUtils } from './clipboard-utils';
 import { ProjectModel } from './../main/home/model/project.interface';
 export class ReplacementLib{
     static async replace(project:ProjectModel):Promise<string>{
         return new Promise(async (resolve,reject)=>{
-            await navigator.clipboard
-            .readText()
+            await ClipboardUtils.getText()
             .then(async (copiedText) => {
                 project.infoList.forEach(el => {
                 copiedText = this.replaceText(copiedText,el.valueX, el.valueY);
                 });
-                await navigator.clipboard.writeText(copiedText).then(() => {
-                    resolve('Text copied to the clipboard');
+                await ClipboardUtils.setText(copiedText).then((message) => {
+                    resolve(message);
                 }).catch((err)=>{
-                    reject('Clipboard Error'+err)
+                    reject(err);
                 });
             }).catch((err)=>{
-                reject('Clipboard Error');
+                reject(err);
             });
         });
     }
