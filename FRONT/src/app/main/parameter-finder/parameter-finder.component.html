@@ -5,8 +5,16 @@
 <div>
     
 </div>
-<div>
-    <div *ngFor="let item of lista" >
-        {{item}}
+<div class="row">
+
+    <div class="col">
+        <div *ngFor="let item of lista" >
+            {{item}}
+        </div>
+    </div>
+    <div style="float: right;" class="col">
+        <div *ngFor="let item of lista2" >
+            {{item}}
+        </div>
     </div>
 </div>

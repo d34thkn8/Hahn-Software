@@ -15,11 +15,13 @@ export class ParameterFinderComponent {
 
   }
   lista:string[]=[];
+  lista2:string[]=[];
 
   async onClick(){
     this.loading.show();
     await ClipboardUtils.getText().then(async (copiedText) => {
         this.lista=this.findVariables(this.removeComments(copiedText));
+        this.lista2=this.lista.filter((elem, index) => this.lista.indexOf(elem) === index);
         this.loading.hide();
     }).catch((err)=>{
       this.messages.error(err);
@@ -47,7 +49,7 @@ export class ParameterFinderComponent {
     // Recorremos la lista de acuerdo a los elementos de la primera lista
     for (const elemento of lista) {
       // Filtramos las líneas que contienen el elemento actual
-      const lineasFiltradas = lineas.filter((linea) => linea.includes(elemento));
+      const lineasFiltradas = lineas.filter((linea) => linea.includes(`"${elemento}"`));
   
       // Concatenamos las líneas filtradas al resultado final
       output += lineasFiltradas.join('\n') + '\n';
