@@ -1,0 +1,13 @@
+<form class="example-form">
+    <mat-form-field class="example-full-width">
+      <mat-label>Hola, qué necesitas?</mat-label>
+      <input matInput [(ngModel)]="entrada" (keyup.enter)="consultar()" >
+    </mat-form-field>
+  <br>
+    <mat-form-field class="example-full-width">
+      <mat-label>Response</mat-label>
+      <textarea matInput [(ngModel)]="response" ></textarea>
+    </mat-form-field>
+    <br>
+    <button mat-raised-button (click)="consultar()" >Consultar</button>
+  </form>

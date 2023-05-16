@@ -5,6 +5,7 @@ import { MainLayoutComponent } from './core/layout/main-layout/main-layout.compo
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ChatComponent } from './main/chat/chat.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,10 @@ const routes: Routes = [
       {
         path:'params',
         component:ParameterFinderComponent
+      },
+      {
+        path:'chat',
+        component:ChatComponent
       },
     ]
   },
