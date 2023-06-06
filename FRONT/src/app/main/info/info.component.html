@@ -45,7 +45,11 @@
           <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
             <ng-container matColumnDef="valueX">
               <th mat-header-cell *matHeaderCellDef fxFlex>ValueX</th>
-              <td mat-cell *matCellDef="let item" fxFlex>{{ item.valueX }}</td>
+              <td mat-cell *matCellDef="let item" fxFlex>
+                <ng-container >
+                  <input matInput type="text" [(ngModel)]="item.valueX" >
+                </ng-container>
+              </td>
             </ng-container>
             <ng-container matColumnDef="valueY">
               <th mat-header-cell *matHeaderCellDef fxFlex>ValueY</th>
@@ -110,6 +114,16 @@
           </mat-panel-description>
         </mat-expansion-panel-header>
         <button mat-raised-button (click)="replaceAuto()">Replace</button>
+      </mat-expansion-panel>
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title> Import || Export </mat-panel-title>
+          <mat-panel-description>
+            Import new item or export this one.
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <button mat-raised-button (click)="import()">Import</button>
+        <button mat-raised-button (click)="export()">Export</button>
       </mat-expansion-panel>
     </mat-accordion>
   </div>

@@ -85,6 +85,12 @@ export class InfoComponent implements OnInit {
   cancel(){
     this.onCancel.emit();
   }
+  import(){
+
+  }
+  export(){
+    
+  }
   save(){
     var validator=new ProjectModelValidator();
     var validationResult=validator.validate(this.project);
