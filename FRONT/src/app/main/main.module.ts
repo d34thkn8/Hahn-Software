@@ -15,12 +15,14 @@ import { InfoComponent } from './info/info.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { ParameterFinderComponent } from './parameter-finder/parameter-finder.component';
 import { ChatComponent } from './chat/chat.component';
+import { CopyToolComponent } from './copy-tool/copy-tool.component';
 @NgModule({
   declarations: [
     HomeComponent,
     InfoComponent,
     ParameterFinderComponent,
-    ChatComponent
+    ChatComponent,
+    CopyToolComponent
   ],
   imports: [
     CommonModule,

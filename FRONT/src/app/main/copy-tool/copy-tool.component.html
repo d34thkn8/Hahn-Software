@@ -1,0 +1,12 @@
+<div *ngFor="let item of valores" class="fila" >
+    <div>
+        <textarea name="item" cols="30" rows="3" [value]="item" ></textarea>
+    </div>
+    <button
+        mat-icon-button
+        class="table-btn btn-delete"
+        (click)="copiar(item)"
+    >
+        <mat-icon class="danger">content_copy</mat-icon>
+    </button>
+</div>

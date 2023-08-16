@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ChatComponent } from './main/chat/chat.component';
+import { CopyToolComponent } from './main/copy-tool/copy-tool.component';
 
 
 const routes: Routes = [
@@ -22,8 +23,8 @@ const routes: Routes = [
         component:ParameterFinderComponent
       },
       {
-        path:'chat',
-        component:ChatComponent
+        path:'copy-tool',
+        component:CopyToolComponent
       },
     ]
   },

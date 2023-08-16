@@ -1,0 +1,7 @@
+.fila{
+    display: flex;
+    border: 0.5px solid gray;
+    :nth-child(1){
+        width: 97%;
+    }
+}
